@@ -5,6 +5,7 @@ import Projects from "@/components/Projects";
 import SaasTeaser from "@/components/SaasTeaser";
 import ContactFooter from "@/components/ContactFooter";
 
+
 export default function Home() {
   return (
     <main className="relative min-h-screen">
