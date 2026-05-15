@@ -1,4 +1,5 @@
 import Navbar from "@/components/Navbar";
+import TrustBar from "@/components/TrustBar";
 import Hero from "@/components/Hero";
 import Services from "@/components/Services";
 import Projects from "@/components/Projects";
@@ -10,6 +11,7 @@ export default function Home() {
   return (
     <main className="relative min-h-screen">
       <Navbar />
+      <TrustBar />
       <Hero />
       <Services />
       <Projects />
