@@ -93,15 +93,17 @@ export default function ContactFooter() {
             <span className="font-display font-bold gradient-text">Yves.</span>
             <span className="text-text-3 text-xs font-mono">© {new Date().getFullYear()} — Fullstack Developer</span>
           </div>
-          <div className="flex items-center gap-6">
-            {[
-              { label: "GitHub", href: "https://github.com/yvesnet9" },
-              { label: "LinkedIn", href: "https://linkedin.com" },
-              { label: "Twitter", href: "https://twitter.com" },
-            ].map((s) => (
-              <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" className="text-text-3 hover:text-text text-xs font-body transition-colors">{s.label}</a>
-            ))}
-          </div>
+         <div className="flex items-center gap-6">
+  {[
+    { label: "GitHub", href: "https://github.com/yvesnet9" },
+    { label: "LinkedIn", href: "https://linkedin.com" },
+    { label: "Twitter", href: "https://twitter.com" },
+    { label: "Mentions légales", href: "/mentions-legales" },
+    { label: "CGV", href: "/cgv" },
+  ].map((s) => (
+    <a key={s.label} href={s.href} target={s.href.startsWith("http") ? "_blank" : "_self"} rel="noopener noreferrer" className="text-text-3 hover:text-text text-xs font-body transition-colors">{s.label}</a>
+  ))}
+</div>
           <div className="flex items-center gap-2 text-xs text-text-3 font-mono">
             <span>Made with</span><span className="text-accent">Next.js</span><span>&</span><span className="text-teal">Tailwind</span>
           </div>
