@@ -25,8 +25,8 @@ export default function Navbar() {
       <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
         <Link href="/" className="font-display font-bold text-lg tracking-tight group">
           <span className="gradient-text">Yves</span>
-          <span className="text-text-3">.</span>
-          <span className="text-text-3 font-mono text-xs ml-1 opacity-0 group-hover:opacity-100 transition-opacity">dev</span>
+          <span className="text-text-3"></span>
+          <span className="text-text-3 font-mono text-xs ml-1 opacity-0 group-hover:opacity-100 transition-opacity">codes</span>
         </Link>
         <nav className="hidden md:flex items-center gap-8">
           {links.map((link) => (

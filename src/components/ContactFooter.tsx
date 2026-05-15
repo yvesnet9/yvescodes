@@ -80,7 +80,7 @@ export default function ContactFooter() {
 
               <div className="mt-8 flex items-center gap-3 text-sm text-text-2 font-body">
                 <div className="w-2 h-2 bg-teal rounded-full animate-pulse2" />
-                <span>Prochaine disponibilité : <strong className="text-text">Juin 2025</strong></span>
+                <span>Prochaine disponibilité : <strong className="text-text">Juin 2026</strong></span>
               </div>
             </div>
           </div>
