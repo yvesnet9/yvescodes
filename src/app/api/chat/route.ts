@@ -18,9 +18,33 @@ function route(prompt: string) {
   return { provider: 'claude', label: 'General', routedAt: new Date().toISOString() };
 }
 
-const SYSTEM = 'Tu es un assistant expert et utile. Reponds en francais. Sois concis mais complet. Ne mentionne jamais les outils que tu utilises.';
+const SYSTEM = 'Tu es un assistant expert et utile. Reponds en francais. Sois concis mais complet. Ne mentionne jamais les outils que tu utilises. Si un fichier ou une image est fourni, analyse-le attentivement avant de repondre.';
 
-async function callClaude(prompt: string) {
+async function callClaude(prompt: string, file?: { data: string; mediaType: string; type: 'image' | 'document' }) {
+  // Build message content
+  type ContentBlock =
+    | { type: 'text'; text: string }
+    | { type: 'image'; source: { type: 'base64'; media_type: string; data: string } }
+    | { type: 'document'; source: { type: 'base64'; media_type: string; data: string } };
+
+  const content: ContentBlock[] = [];
+
+  if (file) {
+    if (file.type === 'image') {
+      content.push({
+        type: 'image',
+        source: { type: 'base64', media_type: file.mediaType, data: file.data },
+      });
+    } else {
+      content.push({
+        type: 'document',
+        source: { type: 'base64', media_type: file.mediaType, data: file.data },
+      });
+    }
+  }
+
+  content.push({ type: 'text', text: prompt });
+
   const res = await fetch('https://api.anthropic.com/v1/messages', {
     method: 'POST',
     headers: {
@@ -32,36 +56,18 @@ async function callClaude(prompt: string) {
       model: 'claude-sonnet-4-20250514',
       max_tokens: 1024,
       system: SYSTEM,
-      messages: [{ role: 'user', content: prompt }],
+      messages: [{ role: 'user', content }],
     }),
   });
   const data = await res.json();
   return { text: data.content?.[0]?.text || '', usage: data.usage };
 }
 
-async function callDallE(prompt: string) {
-  const res = await fetch('https://api.openai.com/v1/images/generations', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${process.env.OPENAI_API_KEY || ''}`,
-    },
-    body: JSON.stringify({
-      model: 'dall-e-3',
-      prompt: prompt,
-      n: 1,
-      size: '1024x1024',
-    }),
-  });
-  const data = await res.json();
-  if (data.error) throw new Error(data.error.message);
-  const imageUrl = data.data?.[0]?.url;
-  return { text: `![Image generee](${imageUrl})`, imageUrl, usage: null };
-}
-
 export async function POST(req: NextRequest) {
   try {
-    const { prompt } = await req.json();
+    const body = await req.json();
+    const { prompt, file } = body;
+
     if (!prompt?.trim()) {
       return NextResponse.json({ error: 'Prompt requis' }, { status: 400 });
     }
@@ -69,20 +75,14 @@ export async function POST(req: NextRequest) {
     const decision = route(prompt);
     console.log('[Orchestre] Routing:', decision);
 
-    let result;
-
-    if (decision.provider === 'dall-e') {
-      result = await callDallE(prompt);
-    } else {
-      result = await callClaude(prompt);
-    }
+    // Si fichier fourni ou provider = claude, on appelle Claude
+    const result = await callClaude(prompt, file || undefined);
 
     return NextResponse.json({
       response: result.text,
-      imageUrl: (result as { imageUrl?: string }).imageUrl || null,
       _meta: {
-        provider: decision.provider,
-        label: decision.label,
+        provider: file ? 'claude-vision' : decision.provider,
+        label: file ? 'Analyse fichier' : decision.label,
         tokens: result.usage,
         routedAt: decision.routedAt,
       }
