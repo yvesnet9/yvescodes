@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 const RULES = [
-  { keywords: ['image','photo','illustration','dessine','visuel'], provider: 'dall-e', label: 'Generation image' },
+  { keywords: ['image','photo','illustration','dessine','visuel','dessin','cree une image','genere une image'], provider: 'dall-e', label: 'Generation image' },
   { keywords: ['actualite','news','cette semaine','recemment','2026'], provider: 'perplexity', label: 'Recherche web' },
   { keywords: ['calcul','integrale','derivee','equation','mathematique'], provider: 'wolfram', label: 'Calcul' },
   { keywords: ['voix','audio','narration','text-to-speech','tts'], provider: 'elevenlabs', label: 'Audio' },
@@ -20,6 +20,45 @@ function route(prompt: string) {
 
 const SYSTEM = 'Tu es un assistant expert et utile. Reponds en francais. Sois concis mais complet. Ne mentionne jamais les outils que tu utilises.';
 
+async function callClaude(prompt: string) {
+  const res = await fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'x-api-key': process.env.ANTHROPIC_API_KEY || '',
+      'anthropic-version': '2023-06-01',
+    },
+    body: JSON.stringify({
+      model: 'claude-sonnet-4-20250514',
+      max_tokens: 1024,
+      system: SYSTEM,
+      messages: [{ role: 'user', content: prompt }],
+    }),
+  });
+  const data = await res.json();
+  return { text: data.content?.[0]?.text || '', usage: data.usage };
+}
+
+async function callDallE(prompt: string) {
+  const res = await fetch('https://api.openai.com/v1/images/generations', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${process.env.OPENAI_API_KEY || ''}`,
+    },
+    body: JSON.stringify({
+      model: 'dall-e-3',
+      prompt: prompt,
+      n: 1,
+      size: '1024x1024',
+    }),
+  });
+  const data = await res.json();
+  if (data.error) throw new Error(data.error.message);
+  const imageUrl = data.data?.[0]?.url;
+  return { text: `![Image generee](${imageUrl})`, imageUrl, usage: null };
+}
+
 export async function POST(req: NextRequest) {
   try {
     const { prompt } = await req.json();
@@ -30,36 +69,21 @@ export async function POST(req: NextRequest) {
     const decision = route(prompt);
     console.log('[Orchestre] Routing:', decision);
 
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': process.env.ANTHROPIC_API_KEY || '',
-        'anthropic-version': '2023-06-01',
-      },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 1024,
-        system: SYSTEM,
-        messages: [{ role: 'user', content: prompt }],
-      }),
-    });
+    let result;
 
-    if (!res.ok) {
-      const err = await res.json();
-      console.error('[Orchestre] API error:', err);
-      return NextResponse.json({ error: 'Erreur API' }, { status: 500 });
+    if (decision.provider === 'dall-e') {
+      result = await callDallE(prompt);
+    } else {
+      result = await callClaude(prompt);
     }
 
-    const data = await res.json();
-    const text = data.content?.[0]?.text || '';
-
     return NextResponse.json({
-      response: text,
+      response: result.text,
+      imageUrl: (result as { imageUrl?: string }).imageUrl || null,
       _meta: {
         provider: decision.provider,
         label: decision.label,
-        tokens: data.usage,
+        tokens: result.usage,
         routedAt: decision.routedAt,
       }
     });
