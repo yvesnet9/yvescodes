@@ -6,7 +6,7 @@ type Service = {
   includes: string[];
   tags: string[];
   featured?: boolean;
-  cta?: { label: string; href: string };
+  cta?: { label: string; href: string; style?: "primary" | "secondary" };
 };
 
 const SERVICES: Service[] = [
@@ -18,6 +18,7 @@ const SERVICES: Service[] = [
     includes: ["Design premium", "SEO optimisé", "Responsive", "Formulaire de contact", "Livraison 7-14 jours"],
     tags: ["Next.js", "Tailwind", "SEO"],
     featured: false,
+    cta: { label: "Réserver un appel gratuit", href: "https://cal.com/yvescodes/30min", style: "secondary" },
   },
   {
     icon: "🛒",
@@ -27,6 +28,7 @@ const SERVICES: Service[] = [
     includes: ["Paiement Stripe", "Gestion stock", "Dashboard admin", "Emails automatiques", "Mobile first"],
     tags: ["Stripe", "Prisma", "Dashboard"],
     featured: true,
+    cta: { label: "Réserver un appel gratuit", href: "https://cal.com/yvescodes/30min", style: "secondary" },
   },
   {
     icon: "⚡",
@@ -36,6 +38,7 @@ const SERVICES: Service[] = [
     includes: ["Auth complète", "Stripe abonnements", "Dashboard", "API REST", "Documentation"],
     tags: ["API", "Auth", "DB"],
     featured: false,
+    cta: { label: "Réserver un appel gratuit", href: "https://cal.com/yvescodes/30min", style: "secondary" },
   },
   {
     icon: "🔄",
@@ -45,6 +48,7 @@ const SERVICES: Service[] = [
     includes: ["Audit gratuit", "Nouveau design", "Performance +", "SEO migré", "Formation incluse"],
     tags: ["Migration", "Perf", "UX"],
     featured: false,
+    cta: { label: "Réserver un appel gratuit", href: "https://cal.com/yvescodes/30min", style: "secondary" },
   },
   {
     icon: "🔑",
@@ -109,7 +113,7 @@ export default function Services() {
                   href={service.cta.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-4 inline-flex items-center justify-center w-full px-4 py-2.5 bg-accent text-white text-sm font-body font-medium rounded-xl hover:opacity-90 transition-opacity"
+                  className={`mt-4 inline-flex items-center justify-center w-full px-4 py-2.5 text-sm font-body font-medium rounded-xl transition-all ${service.cta.style === "secondary" ? "border border-accent/40 text-accent hover:bg-accent/10" : "bg-accent text-white hover:opacity-90"}`}
                 >
                   {service.cta.label}
                 </a>
