@@ -24,7 +24,7 @@ export default function Hero() {
       <div className="max-w-6xl mx-auto px-6 relative z-10">
         <div className="stagger-1 inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-teal/30 bg-teal/5 text-xs text-teal font-mono mb-8">
           <span className="w-1.5 h-1.5 bg-teal rounded-full animate-pulse2" />
-          <span>1 place disponible pour juin 2026 — Remote / Bruxelles</span>
+          <span>1 place disponible pour septembre 2026 — Remote / Bruxelles</span>
         </div>
         <h1 className="stagger-2 font-display font-extrabold leading-[0.95] tracking-tight mb-6">
           <span className="block text-5xl sm:text-6xl lg:text-8xl text-text">Sites web &amp;</span>
