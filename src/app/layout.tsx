@@ -1,11 +1,9 @@
 import type { Metadata } from "next";
 import { Syne, Outfit, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-
 const syne = Syne({ subsets: ["latin"], weight: ["400","500","600","700","800"], variable: "--font-syne", display: "swap" });
 const outfit = Outfit({ subsets: ["latin"], weight: ["300","400","500","600"], variable: "--font-outfit", display: "swap" });
 const jetbrains = JetBrains_Mono({ subsets: ["latin"], weight: ["400","500"], variable: "--font-jetbrains", display: "swap" });
-
 export const metadata: Metadata = {
   title: { default: "Yves — Développeur Fullstack à Lausanne & Genève | Sites web & SaaS", template: "%s | Yves" },
   description: "Développeur fullstack basé à Lausanne, actif à Genève et en Suisse romande. Je conçois des sites web, applications SaaS et e-commerce premium sur mesure pour PME et indépendants.",
@@ -33,7 +31,6 @@ export const metadata: Metadata = {
     googleBot: { index: true, follow: true },
   },
 };
-
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const jsonLd = {
     "@context": "https://schema.org",
@@ -56,7 +53,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     knowsAbout: ["Next.js", "React", "TypeScript", "SaaS", "E-commerce", "Stripe"],
     sameAs: ["https://github.com/yvesnet9"],
   };
-
   return (
     <html lang="fr" className={`${syne.variable} ${outfit.variable} ${jetbrains.variable}`}>
       <body>

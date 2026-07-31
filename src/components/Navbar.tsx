@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import GuideBanner from "./GuideBanner";
 
 const links = [
   { label: "Services", href: "#services" },
@@ -22,7 +23,7 @@ export default function Navbar() {
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "glass border-b border-border py-4" : "py-6"}`}>
-      <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
+  <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
         <Link href="/" className="font-display font-bold text-lg tracking-tight group">
           <span className="gradient-text">Yves</span>
           <span className="text-text-3"></span>
@@ -52,7 +53,8 @@ export default function Navbar() {
           </div>
         </button>
       </div>
-      {menuOpen && (
+         <GuideBanner />    
+       {menuOpen && (
         <div className="md:hidden glass border-t border-border mt-2 px-6 py-4 flex flex-col gap-4">
           {links.map((link) => (
             <Link key={link.href} href={link.href} className="text-text-2 hover:text-text text-sm transition-colors" onClick={() => setMenuOpen(false)}>
