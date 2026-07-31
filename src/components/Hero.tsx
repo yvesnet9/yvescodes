@@ -24,7 +24,7 @@ export default function Hero() {
       <div className="max-w-6xl mx-auto px-6 relative z-10">
         <div className="stagger-1 inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-teal/30 bg-teal/5 text-xs text-teal font-mono mb-8">
           <span className="w-1.5 h-1.5 bg-teal rounded-full animate-pulse2" />
-          <span>1 place disponible pour juin 2026 — Remote / Bruxelles</span>
+          <span>1 place disponible pour septembre 2026 — Lausanne · Genève · Remote</span>
         </div>
         <h1 className="stagger-2 font-display font-extrabold leading-[0.95] tracking-tight mb-6">
           <span className="block text-5xl sm:text-6xl lg:text-8xl text-text">Sites web &amp;</span>
@@ -32,7 +32,7 @@ export default function Hero() {
           <span className="block text-3xl sm:text-4xl lg:text-5xl text-text-2 mt-3 font-light">Du code propre. Des résultats mesurables.</span>
         </h1>
         <p className="stagger-3 text-text-2 text-lg max-w-xl leading-relaxed mb-10 font-body">
-          Développeur fullstack basé à Bruxelles — je transforme vos idées en produits web <strong className="text-text">rapides, premium et pensés pour convertir</strong>. SaaS, e-commerce, applications sur mesure.
+          Développeur fullstack basé à Lausanne, actif à Genève et en Suisse romande — je transforme vos idées en produits web <strong className="text-text">rapides, premium et pensés pour convertir</strong>. SaaS, e-commerce, applications sur mesure.
         </p>
         <div className="stagger-4 flex flex-wrap gap-3 mb-16">
           <a href="https://cal.com/yvescodes/30min" target="_blank" rel="noopener noreferrer" className="px-6 py-3 bg-accent hover:bg-accent-dim text-white rounded-lg font-body font-medium transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]">
