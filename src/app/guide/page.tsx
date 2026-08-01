@@ -89,7 +89,7 @@ export default function GuidePage() {
         <div className="mt-16 border-t border-neutral-800 pt-8 text-sm text-neutral-400">
           <p>
             <strong className="text-neutral-200">Yves</strong> — Développeur
-            fullstack, Bruxelles. 12+ projets livrés, paiement Stripe, garanties
+            fullstack, Lausanne. 12+ projets livrés, paiement Stripe, garanties
             écrites.
           </p>
           <p className="mt-2">

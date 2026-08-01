@@ -54,7 +54,7 @@ export default function CGV() {
 
           <section>
             <h2 className="font-display font-semibold text-xl text-text mb-4">9. Droit applicable</h2>
-            <p className="text-sm">Les présentes CGV sont soumises au droit belge. En cas de litige, les tribunaux de Bruxelles sont compétents.</p>
+            <p className="text-sm">Les présentes CGV sont soumises au droit suisse. En cas de litige, le for juridique est à Lausanne.</p>
           </section>
 
           <p className="text-xs text-text-3 font-mono">Dernière mise à jour : {new Date().toLocaleDateString("fr-FR")}</p>

@@ -221,7 +221,7 @@ export default function Orchestre() {
           <span style={{ margin: "0 6px" }}>·</span>
           <a href="/" style={{ color: "rgba(255,255,255,0.35)", textDecoration: "none" }}>yvescodes.com</a>
         </div>
-        <div style={{ fontSize: 12, color: "rgba(255,255,255,0.15)" }}>2026 — Bruxelles</div>
+        <div style={{ fontSize: 12, color: "rgba(255,255,255,0.15)" }}>2026 — Lausanne</div>
       </footer>
     </main>
   );

@@ -10,9 +10,9 @@ export default function MentionsLegales() {
             <h2 className="font-display font-semibold text-xl text-text mb-4">Éditeur du site</h2>
             <p>Le site <strong className="text-text">yvescodes.com</strong> est édité par :</p>
             <ul className="mt-3 space-y-1 text-sm">
-              <li><strong className="text-text">Nom :</strong> Yves</li>
+              <li><strong className="text-text">Nom :</strong> Mukenketayi Jamesy Mukuna</li>
               <li><strong className="text-text">Statut :</strong> Développeur freelance</li>
-              <li><strong className="text-text">Localisation :</strong> Bruxelles, Belgique</li>
+              <li><strong className="text-text">Localisation :</strong> Lausanne, Suisse</li>
               <li><strong className="text-text">Email :</strong> hello@yvescodes.com</li>
               <li><strong className="text-text">Site :</strong> https://yvescodes.com</li>
             </ul>
@@ -34,7 +34,7 @@ export default function MentionsLegales() {
 
           <section>
             <h2 className="font-display font-semibold text-xl text-text mb-4">Données personnelles</h2>
-            <p className="text-sm">Les données collectées via le formulaire de contact (nom, email, message) sont utilisées uniquement pour répondre à vos demandes. Elles ne sont pas transmises à des tiers. Conformément au RGPD, vous disposez d'un droit d'accès, de rectification et de suppression de vos données en contactant hello@yvescodes.com.</p>
+            <p className="text-sm">Les données collectées via le formulaire de contact (nom, email, message) sont utilisées uniquement pour répondre à vos demandes. Elles ne sont pas transmises à des tiers. Conformément à la Loi fédérale sur la protection des données (nLPD) et au RGPD, vous disposez d'un droit d'accès, de rectification et de suppression de vos données en contactant hello@yvescodes.com.</p>
           </section>
 
           <section>
