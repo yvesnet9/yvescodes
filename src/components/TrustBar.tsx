@@ -8,7 +8,7 @@ const TRUST_ITEMS = [
 
 export default function TrustBar() {
   return (
-    <div className="border-y border-border bg-bg-2 py-3 overflow-hidden">
+    <div className="border-y border-border bg-bg-2 py-3 overflow-hidden mt-[72px]">
       <div className="inline-flex animate-[scroll_20s_linear_infinite] whitespace-nowrap">
         {[...TRUST_ITEMS, ...TRUST_ITEMS].map((item, i) => (
           <span key={i} className="inline-flex items-center gap-2 px-8 text-sm font-body">

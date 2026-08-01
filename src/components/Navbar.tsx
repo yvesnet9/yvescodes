@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import GuideBanner from "./GuideBanner";
 
 const links = [
   { label: "Services", href: "#services" },
@@ -53,7 +52,6 @@ export default function Navbar() {
           </div>
         </button>
       </div>
-         <GuideBanner />    
        {menuOpen && (
         <div className="md:hidden glass border-t border-border mt-2 px-6 py-4 flex flex-col gap-4">
           {links.map((link) => (

@@ -17,7 +17,7 @@ export default function GuideBanner() {
   if (!visible) return null;
 
   return (
-    <div className="relative z-50 flex items-center justify-center gap-2 bg-white px-10 py-2.5 text-center text-sm font-medium text-neutral-950">
+    <div className="relative z-30 flex items-center justify-center gap-2 bg-white px-10 py-2.5 text-center text-sm font-medium text-neutral-950">
       <span aria-hidden>📊</span>
       <p>
         <span className="hidden sm:inline">Guide gratuit : </span>
